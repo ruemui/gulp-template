@@ -1,0 +1,13 @@
+extends /include/_layout
+
+block title
+	title いんでっくす
+prepend meta
+	meta(property='og:title', content=site.title)
+
+block contents
+	.l-page
+		h1.heading Hello Wolrd!
+		p #{site.url}
+		p: a(href='about/index.html') アバウトページへ
+		p: a(href='about/message.html') メッセージページへ

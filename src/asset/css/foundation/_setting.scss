@@ -1,0 +1,62 @@
+/* ================================================
+ # variables
+================================================ */
+/* fontsize */
+$SMALLFONTSIZE:  12px;
+$MEDIUMFONTSIZE: 16px;
+$LARGEFONTSIZE:  16px;
+
+/* color */
+$FONTCOLOR: #333;
+
+/* breakpoint */
+$SMALL_BREAKPOINT: 480px;
+$MEDIUM_BREAKPOINT: 760px;
+$LARGE_BREAKPOINT: 1000px;
+
+/* ================================================
+ # mixins
+================================================ */
+/* clearfix */
+@mixin clearfix {
+	&:before,
+	&:after {
+		content: '';
+		display: table;
+	}
+	&:after {
+	clear: both;
+	}
+}
+
+/* background */
+@mixin background($color:transparent, $image:none, $v:center, $h:center) {
+	background: $color $image scroll no-repeat $v $h;
+}
+
+/* font size */
+@mixin s-font-size($size: $SMALLFONTSIZE) {
+	font-size: $size / $SMALLFONTSIZE * 1rem;
+}
+@mixin l-font-size($size: $LARGEFONTSIZE) {
+	font-size: $size / $LARGEFONTSIZE * 1rem;
+}
+
+@mixin mq-s {
+	@media (min-width: $SMALL_BREAKPOINT) {
+		@content;
+	}
+}
+
+@mixin mq-m {
+	@media (min-width: $MEDIUM_BREAKPOINT) {
+		@content;
+	}
+}
+
+@mixin mq-l {
+	@media (min-width: $LARGE_BREAKPOINT) {
+		@content;
+	}
+}
+

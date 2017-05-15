@@ -1,0 +1,11 @@
+extends /include/_layout
+
+block title
+	title あばうと
+prepend meta
+	meta(property='og:title', content='アバウト' + ' | ' + site.title)
+
+block contents
+	h1 アバウトのページ
+	h2 ファイルパス
+	p #{site.url + file}

@@ -1,0 +1,8 @@
+# ルートフォルダかどうか
+root = true
+
+[*]
+indent_style = tab
+charset = utf-8
+end_of_line = lf
+indent_size = 4

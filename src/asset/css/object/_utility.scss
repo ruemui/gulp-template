@@ -1,0 +1,55 @@
+/*
+ * # ユーティリティークラス
+ *
+ * - メディアクエリ判別クラス
+ * - 削除クラス
+ * - 赤字クラス
+ *
+ */
+
+//メディアクエリ判別クラス
+.u-mediaquery {
+	display: none;
+	font-family: 'mobile';
+}
+@include mq-s {
+	.u-mediaquery {
+		font-family: 'desktop';
+	}
+}
+
+// 削除クラス
+.u-hidden {display: none}
+.u-hidden-s {display: none}
+@include mq-s {
+	.u-hidden-s {display: block}
+	br.u-hidden-s {display: inline}
+	.u-hidden-l {display: none}
+}
+@include mq-l {
+	.u-hidden-l {display: block}
+	br.u-hidden-l {display: inline}
+	.u-hidden-xl {display: none}
+	br.u-hidden-xl {display: none}
+}
+
+// 赤字クラス
+.u-red {
+	color: #f33;
+}
+
+//揃え
+.u-left {
+	text-align: left;
+}
+.u-center {
+	text-align: center;
+}
+.u-right {
+	text-align: right;
+}
+
+//インラインブロック化
+.u-ib {
+	display: inline-block;
+}

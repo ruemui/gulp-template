@@ -1,0 +1,66 @@
+/*
+# ルートフォントサイズを定義
+
+ */
+
+html {
+	font-size: ($SMALLFONTSIZE / 16px) * 1rem;
+}
+
+@include mq-m {
+	html {
+		font-size: ($MEDIUMFONTSIZE / 16px) * 1rem;
+	}
+}
+
+body {
+	font-family: "ヒラギノ角ゴ ProN W3", "HiraKakuPro-W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", sans-serif;
+	line-height: 1.6;
+	letter-spacing: .06em;
+}
+
+/*
+ # リセット
+ */
+
+h1, h2, h3, h4, h5, p {
+	margin: 0;
+	padding: 0;
+}
+
+/*
+ # リンク定義
+```
+<a href="#">NEWS</a>
+```
+ */
+
+a {
+	&:link,&:visited {
+		color: $FONTCOLOR;
+	}
+}
+
+.no-touch a:hover {
+	opacity: .7;
+}
+
+/*
+
+# 画像
+
+画像はスモールウィンドウではcontainer内で100%で表示
+
+```
+<img src="http://placehold.it/1050x150">
+```
+ */
+
+img {
+	max-width: 100%;
+}
+@include mq-s {
+	img {
+		max-width: none;
+	}
+}
