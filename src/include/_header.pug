@@ -1,7 +1,7 @@
 header.l-header
-	h1.l-header__logo: a(href='/') site title
+	h1.l-header__logo: a(href=rootPath) site title
 	ul.l-header__nav
-		li.l-header__nav__item: a(href='/') TOP
-		li.l-header__nav__item: a(href='/about/') about
-		li.l-header__nav__item: a(href='/special/') special
+		li.l-header__nav__item: a(href=rootPath) TOP
+		li.l-header__nav__item: a(href=rootPath + "about/") about
+		li.l-header__nav__item: a(href=rootPath + "special/") special
 	.l-header__btn: span メニューの開閉

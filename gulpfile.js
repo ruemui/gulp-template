@@ -15,7 +15,7 @@ var PATH_DIST = 'dist'
  */
 gulp.task('copy', function(){
 	return gulp.src([
-		PATH_SRC + '/**/*.{html,php,pdf,mp4,woff,ttf,otf,svg,css}'
+		PATH_SRC + '/**/*.{html,php,js,pdf,mp4,woff,ttf,otf,svg,css}'
 	])
 	.pipe(gulp.dest(PATH_DIST));
 });
@@ -56,9 +56,6 @@ gulp.task('build:image', function(){
 				quality: 90,
 				speed: 3,
 				verbose: false
-			}),
-			mozjpeg({
-				quality: 100
 			})
 		], {
 			verbose: true // 詳細を出力
@@ -119,9 +116,9 @@ gulp.task('build', function(){
 });
 
 gulp.task('watch', function(){
-	gulp.watch([PATH_SRC + '/**/*.{html,php,pdf,mp4,woff,ttf,otf,svg,css}'], ['copy']).on('change', browserSync.reload);
+	gulp.watch([PATH_SRC + '/**/*.{html,php,js,pdf,mp4,woff,ttf,otf,svg,css}'], ['copy']).on('change', browserSync.reload);
 	//gulp.watch([PATH_SRC + '/**/*.ejs'], ['build:ejs']).on('change', browserSync.reload);
-	gulp.watch([PATH_SRC + '/**/*.pug'], ['build:pug']).on('change', browserSync.reload);
+	gulp.watch([PATH_SRC + '/**/*.{pug,json}'], ['build:pug']).on('change', browserSync.reload);
 	gulp.watch([PATH_SRC + '/asset/css/**/*.scss'], ['build:sass']);
 	gulp.watch([PATH_SRC + '/**/*.{png,jpg}'], ['build:image']);
 });

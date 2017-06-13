@@ -1,2 +1,7 @@
-- file = locals.relativePath
-- site = locals.sitedata.site
+- var file     = locals.relativePath
+- var sitedata = locals.sitedata
+- var site     = locals.sitedata.site
+if file === 'index.html'
+	- var rootPath = './'
+else
+	- var rootPath = '../'

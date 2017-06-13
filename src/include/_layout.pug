@@ -1,29 +1,31 @@
 include /include/_mixin
-doctype html(lang='ja')
-html
+doctype html
+html(lang="ja")
 	head
-		meta(charset='UTF-8')
-		meta(http-equiv='X-UA-Compatible' content='IE=edge')
-		meta(name='viewport', content='width=device-width')
-		meta(name='format-detection', content='telephone=no')
-		meta(name='robots', content='index,follow')
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport", content="width=device-width")
+		meta(name="format-detection", content="telephone=no")
+		meta(name="robots", content="index,follow")
 		block title
 		block meta
-			meta(property='og:type', content='XXXXXXXXXXXXXXXXXXXXXXXXX')
-			meta(property='og:image', content=site.url + 'asset/image/ogp.png')
-			meta(property='og:url', content='site.url')
-			meta(property='og:description', content=site.description)
-		link(rel='shortcut icon', href='/favicon.ico')
-		link(rel='apple-touch-icon', href='/apple-touch-icon.png')
+			meta(name="description", content=site.description)
+			meta(property="og:type", content="XXXXXXXXXXXXXXXXXXXXXXXXX")
+			meta(property="og:image", content=site.url + "asset/image/ogp.png")
+			meta(property="og:url", content=site.url)
+			meta(property="og:description", content=site.description)
+		link(rel="shortcut icon", href="/favicon.ico")
+		link(rel="apple-touch-icon", href="/apple-touch-icon.png")
 		// stylesheets
 		block css
-			link(rel='stylesheet', href='/asset/css/main.css' media='all')
+			link(rel="stylesheet", href=rootPath + "asset/css/main.css" media="all")
 		// canonical
-		link(rel='canonical', href=site.url + file)
+		link(rel="canonical", href=site.url + file)
 	body
+		include /include/_tags
 		include /include/_header
 		block contents
 		include /include/_footer
 		block scripts
-			script(src="/asset/js/vendor.js")
-			script(src="/asset/js/main.js")
+			script(src=rootPath + "asset/js/vendor.js")
+			script(src=rootPath + "asset/js/main.js")
