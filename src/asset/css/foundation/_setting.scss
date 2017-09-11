@@ -3,21 +3,38 @@
 ================================================ */
 /* fontsize */
 $SMALLFONTSIZE:  12px;
-$MEDIUMFONTSIZE: 16px;
-$LARGEFONTSIZE:  16px;
+$MEDIUMFONTSIZE: 14px;
+$LARGEFONTSIZE:  14px;
 
 /* color */
-$FONTCOLOR: #333;
+$FONTCOLOR: #000;
+$LINKCOLOR: $FONTCOLOR;
+
+/* base mobile width */
+$BASE_MB_WIDTH: 320px;
+/* base desktop width */
+$BASE_DT_WIDTH: 1200px;
+/* max width */
+$MAXWIDTH: 1200px;
 
 /* breakpoint */
-$SMALL_BREAKPOINT: 480px;
-$MEDIUM_BREAKPOINT: 760px;
-$LARGE_BREAKPOINT: 1000px;
+$SMALL_BREAKPOINT: 480;
+$MEDIUM_BREAKPOINT: 768;
+$LARGE_BREAKPOINT: 1000;
+$XLARGE_BREAKPOINT: 1200;
+
+$BREAKPOINTS: (
+	'sm': 'screen and (min-width: ' + $SMALL_BREAKPOINT + 'px)',
+	'md': 'screen and (min-width: ' + $MEDIUM_BREAKPOINT + 'px)',
+	'lg': 'screen and (min-width: ' + $LARGE_BREAKPOINT + 'px)',
+	'xl': 'screen and (min-width: ' + $XLARGE_BREAKPOINT + 'px)',
+) !default;
+
 
 /* ================================================
  # mixins
 ================================================ */
-/* clearfix */
+// clearfix
 @mixin clearfix {
 	&:before,
 	&:after {
@@ -29,34 +46,39 @@ $LARGE_BREAKPOINT: 1000px;
 	}
 }
 
-/* background */
+// background
 @mixin background($color:transparent, $image:none, $v:center, $h:center) {
 	background: $color $image scroll no-repeat $v $h;
 }
 
-/* font size */
+// font size
 @mixin s-font-size($size: $SMALLFONTSIZE) {
 	font-size: $size / $SMALLFONTSIZE * 1rem;
+}
+@mixin m-font-size($size: $MEDIUMFONTSIZE) {
+	font-size: $size / $MEDIUMFONTSIZE * 1rem;
 }
 @mixin l-font-size($size: $LARGEFONTSIZE) {
 	font-size: $size / $LARGEFONTSIZE * 1rem;
 }
 
-@mixin mq-s {
-	@media (min-width: $SMALL_BREAKPOINT) {
+// font family
+@mixin ff-tsu-m {
+	font-family: TsukuGoPr5-M;
+}
+@mixin ff-tsu-b {
+	font-family: TsukuGoPro-B;
+}
+
+
+// メディアクエリ生成
+@mixin mq($breakpoint: md) {
+	@media #{map-get($BREAKPOINTS, $breakpoint)} {
 		@content;
 	}
 }
 
-@mixin mq-m {
-	@media (min-width: $MEDIUM_BREAKPOINT) {
-		@content;
-	}
+// デザインデータからパーセンテージを計算
+@mixin percentage($child: 100, $parent: 100) {
+	width: ($child / $parent) * 100%;
 }
-
-@mixin mq-l {
-	@media (min-width: $LARGE_BREAKPOINT) {
-		@content;
-	}
-}
-

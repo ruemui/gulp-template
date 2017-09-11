@@ -1,102 +1,133 @@
-/*
- * =====================================================================================================
- * # レイアウト
- *
- * 命名は`.l-` で開始する
- * 幅に関する定義を記述
- * =====================================================================================================*
- */
+// layout
+//
+// レイアウト
+// _layout.scssにて定義
+//
+// Markup:
+//
+//
+// Styleguide 2.0.0
 
 
-/*
- * =====================================================================================================
- * .l-page
- * =====================================================================================================*
- */
+// l-page
+//
+// ページ全体を囲むフレーム。横幅制限を定義。
+//
+// Markup:
+// <div class="l-page"></div>
+//
+// Styleguide 2.1.0
 .l-page {
 	position: relative;
 }
 
-.l-article {
-	width: 60%;
-	margin: 0 auto;
-	p {
-		margin-top: 4em;
-		line-height: 2;
-	}
-}
 
-/*
- * =====================================================================================================
- * .l-frame
- * =====================================================================================================*
- */
+// l-frame
+//
+// サイトの一般的なコンテンツフレーム
+//
+// Markup:
+// <div class="l-frame"></div>
+//
+// Styleguide 2.2.0
 
- .l-frame {
-	width: 87.5%;
+.l-frame {
+	@include percentage(280, 320);
 	margin: 0 auto;
 	position: relative;
-}
-.l-frame--full {
-	width: 100%;
+	@include mq(md) {
+		@include percentage(1126, 1200);
+		max-width: $MAXWIDTH;
+	}
 }
 
-@include mq-s {
-	.l-frame {
-		width: auto;
-		max-width: 1600px;
-	}
-	.l-frame--full {
+// l-frame--full
+//
+// サイト幅100%のコンテンツフレーム
+//
+// Markup:
+// <div class="l-frame l-frame--full"></div>
+//
+// Styleguide 2.2.3
+
+.l-frame--full {
+	width: 100%;
+	@include mq(md) {
 		width: 100%;
 		max-width: none;
 	}
-	.l-frame--large {
-		width: 90%;
-		max-width: 1600px * 0.9;
-	}
-	.l-frame--small {
-		width: 66%;
-		max-width: 1600px * 0.66;
+}
+
+// l-frame--small
+//
+// 小さいコンテンツフレーム
+//
+// Markup:
+// <div class="l-frame l-frame--small"></div>
+//
+// Styleguide 2.2.4
+
+.l-frame--small {
+	@include mq(lg) {
+		@include percentage(738, 1200);
+		max-width: $MAXWIDTH * (738 / 1200);
 	}
 }
 
-/*
- * =====================================================================================================
- * .l-col
- * マージンを入れて複数列を作成
- * =====================================================================================================*
- */
-@include mq-s {
-	.l-col2 {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-	}
-	.l-col2__item {
-		width: 46.969697%;
-	}
-}
 
-@include mq-s {
-	.ie9 {
-		.l-col2__item {
-			display: inline-block;
-			vertical-align: top;
-		}
-	}
-}
-/*
- * =====================================================================================================
- * .l-half
- * 50%の二分割
- * =====================================================================================================*
- */
-@include mq-s {
-	.l-half {
+// l-half
+//
+// 50%の二分割
+//
+// Markup:
+// <div class="l-half">
+//   <div class="l-half__item"></div>
+//   <div class="l-half__item"></div>
+// </div>
+//
+// Styleguide 2.3.0
+.l-half {
+	@include mq(md) {
 		display: flex;
 		flex-wrap: wrap;
 	}
-	.l-half__item {
+}
+.l-half__item {
+	@include mq(md) {
 		width: 50%;
+	}
+}
+
+// l-col
+//
+// カラム表示。modifier でカラム数を指定
+//
+// Markup:
+// <div class="l-col l-col--3">
+//   <div class="l-col__item"></div>
+//   <div class="l-col__item"></div>
+//   <div class="l-col__item"></div>
+// </div>
+//
+// Styleguide 2.4.0
+.l-col {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.l-col__item {
+	width: 100%;
+}
+@for $i from 2 through 4 {
+	$block: 59;
+	$margin: 38;
+	.l-col--#{$i}--md .l-col__item {
+		@include mq(md) {
+			width: #{ (($block * (12 / $i) + $margin * ((12 / $i) - 1)) / 1126) * 100%};
+		}
+	}	.l-col--#{$i}--lg .l-col__item {
+		@include mq(lg) {
+			width: #{ (($block * (12 / $i) + $margin * ((12 / $i) - 1)) / 1126) * 100%};
+		}
 	}
 }

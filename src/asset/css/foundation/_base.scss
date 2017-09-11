@@ -2,21 +2,24 @@
 # ルートフォントサイズを定義
 
  */
-
 html {
 	font-size: ($SMALLFONTSIZE / 16px) * 1rem;
-}
-
-@include mq-m {
-	html {
+	@include mq(md) {
 		font-size: ($MEDIUMFONTSIZE / 16px) * 1rem;
 	}
 }
 
 body {
-	font-family: "ヒラギノ角ゴ ProN W3", "HiraKakuPro-W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", sans-serif;
-	line-height: 1.6;
-	letter-spacing: .06em;
+	font-family: TsukuGoPr5-M, "ヒラギノ角ゴ ProN W3", "HiraKakuPro-W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", sans-serif;
+	line-height: 1.75;
+	letter-spacing: .1em;
+	&:before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 6px;
+		background: transparent url('../image/header-line.png') repeat-x scroll left top;
+	}
 }
 
 /*
@@ -28,39 +31,54 @@ h1, h2, h3, h4, h5, p {
 	padding: 0;
 }
 
-/*
- # リンク定義
-```
-<a href="#">NEWS</a>
-```
- */
+ul, ol, dl, li, dt, dd {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+// link
+//
+// リンク定義
+//
+// Markup:
+// <a href="#">NEWS</a>
+//
+// Styleguide 1.2.0
 
 a {
+	transition: opacity .4s ease;
 	&:link,&:visited {
 		color: $FONTCOLOR;
+		text-decoration: none;
+	}
+	&[data-rel="external"] {
+		position: relative;
+		&:after {
+			content: '';
+			display: inline-block;
+			margin-left: .5em;
+			width: .6em;
+			height: 1em;
+			background: transparent url('../image/icon-external.png') no-repeat scroll center center;
+			background-size: contain;
+		}
 	}
 }
 
 .no-touch a:hover {
-	opacity: .7;
+	opacity: .5;
 }
 
-/*
-
-# 画像
-
-画像はスモールウィンドウではcontainer内で100%で表示
-
-```
-<img src="http://placehold.it/1050x150">
-```
- */
+// img
+//
+// 画像はスモールウィンドウではcontainer内で100%で表示
+//
+// Markup:
+// <img src="http://placehold.it/1050x150">
+//
+// Styleguide 1.3.0
 
 img {
 	max-width: 100%;
-}
-@include mq-s {
-	img {
-		max-width: none;
-	}
 }

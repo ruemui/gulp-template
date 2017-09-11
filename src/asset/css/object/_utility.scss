@@ -10,27 +10,48 @@
 //メディアクエリ判別クラス
 .u-mediaquery {
 	display: none;
-	font-family: 'mobile';
-}
-@include mq-s {
-	.u-mediaquery {
-		font-family: 'desktop';
+	font-family: '#{$SMALL_BREAKPOINT}';
+	@include mq(md) {
+		font-family: '#{$MEDIUM_BREAKPOINT}';
+	}
+	@include mq(lg) {
+		font-family: '#{$LARGE_BREAKPOINT}';
+	}
+	@include mq(xl) {
+		font-family: '#{$XLARGE_BREAKPOINT}';
 	}
 }
 
 // 削除クラス
 .u-hidden {display: none}
-.u-hidden-s {display: none}
-@include mq-s {
-	.u-hidden-s {display: block}
-	br.u-hidden-s {display: inline}
-	.u-hidden-l {display: none}
+.u-hidden-sm {
+	display: none;
+	@include mq(md) {display: block;}
 }
-@include mq-l {
-	.u-hidden-l {display: block}
-	br.u-hidden-l {display: inline}
-	.u-hidden-xl {display: none}
-	br.u-hidden-xl {display: none}
+br.u-hidden-sm {
+	@include mq(md) {display: inline;}
+}
+.u-hidden-md {
+	@include mq(md) {display: none;}
+	@include mq(lg) {display: block;}
+}
+br.u-hidden-md {
+	@include mq(md) {display: none;}
+	@include mq(lg) {display: inline;}
+}
+.u-hidden-lg {
+	@include mq(sm) {display: none;}
+	@include mq(xl) {display: block;}
+}
+br.u-hidden-lg {
+	@include mq(sm) {display: none;}
+	@include mq(xl) {display: inline;}
+}
+.u-hidden-xl {
+	@include mq(xl) {display: none;}
+}
+br.u-hidden-xl {
+	@include mq(xl) {display: none;}
 }
 
 // 赤字クラス
